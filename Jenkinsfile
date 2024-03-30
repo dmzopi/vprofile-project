@@ -23,10 +23,27 @@ pipeline {
         stage('Build') {
             steps {
                 // Build using settings: we want to download dependencies specified in pom.xml which takes details from settings.xml
-                // 
                 sh 'mvn -s settings.xml -DskipTests install'
             }
-
+            post {
+                success {
+                    echo "Now Archiving..."
+                    archiveArticacts artifacts: '**/*.war'
+                }
+            }
         }
+        stage('Test') {
+            steps {
+                //unit tests
+                sh 'mvn test'
+            }
+        }
+        stage('Checkstyle Analysis') {
+            steps {
+                //code analysis tool, vulnurabilities
+                sh 'mvn checkstyle:checkstyle'
+            }
+        }
+
     }
 }
