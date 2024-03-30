@@ -12,7 +12,7 @@ pipeline {
     // Specify env variables used in settings.xml and pom.xml
     environment {
       
-      NEXUSIP = 'nexus.pokhrime.vas'
+      NEXUSIP = 'nexus.pokhrime.vas2'
       NEXUSPORT = '8081'
       NEXUS_LOGIN = 'nexuslogin' //as specified in jenkins config
       NEXUS_USER = 'admin'
