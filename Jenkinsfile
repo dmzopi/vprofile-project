@@ -17,6 +17,8 @@ pipeline {
       SNAP_REPO = 'vprofile-snapshot'
       RELEASE_REPO = 'vprofile-release'
       CENTRAL_REPO = 'vprofile-maven-central'
+      SONARSERVER = 'sonarserver'
+      SONARSCANNER = 'sonarscanner'
       
     }
     stages {
@@ -27,23 +29,42 @@ pipeline {
             }
             post {
                 success {
-                    echo "Now Archiving..."
+                    echo "Now Archiving..." // Archived files will be accessible from the Jenkins webpage.
                     archiveArtifacts artifacts: '**/*.war'
                 }
             }
         }
         stage('Test') {
             steps {
-                //unit tests
+                //unit tests: execute src/test/* -> put results to target/surefire-report
                 sh 'mvn test'
             }
         }
         stage('Checkstyle Analysis') {
             steps {
-                //code analysis tool, vulnurabilities
+                //code analysis tool, vulnurabilities. Put result to target/checkstyle-result.xml etc.
                 sh 'mvn checkstyle:checkstyle'
             }
         }
+        // Get all report and ket SonarQube analyse it
+        stage('Sonar Analysis') {
+    environment {
+                scannerHome = tool "${SONARSCANNER}"
+            }
+            steps {
+               withSonarQubeEnv("${SONARSERVER}") {
+                   sh '''${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=vprofile \
+                   -Dsonar.projectName=vprofile \
+                   -Dsonar.projectVersion=1.0 \
+                   -Dsonar.sources=src/ \
+                   -Dsonar.java.binaries=target/test-classes/com/visualpathit/account/controllerTest/ \
+                   -Dsonar.junit.reportsPath=target/surefire-reports/ \
+                   -Dsonar.jacoco.reportsPath=target/jacoco.exec \
+                   -Dsonar.java.checkstyle.reportPaths=target/checkstyle-result.xml'''
+              }
+            }
+        }
+
 
     }
 }
