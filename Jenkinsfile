@@ -13,7 +13,7 @@ pipeline {
       NEXUS_LOGIN = 'nexuslogin' //as specified in jenkins config
       NEXUS_USER = 'admin'
       NEXUS_PASS = 'nexus'
-      NEXUS_GRP-REPO = 'vprofile-maven-group'
+      NEXUS_GRP_REPO = 'vprofile-maven-group'
       SNAP_REPO = 'vprofile-snapshot'
       RELEASE_REPO = 'vprofile-release'
       CENTRAL_REPO = 'vprofile-maven-central'
