@@ -11,12 +11,12 @@ pipeline {
       NEXUSIP = 'nexus.pokhrime.vas'
       NEXUSPORT = '8081'
       NEXUS_LOGIN = 'nexuslogin' //as specified in jenkins config
-      NEXUS-USER = 'admin'
-      NEXUS-PASS = 'nexus'
-      NEXUS-GRP-REPO = 'vprofile-maven-group'
-      SNAP-REPO = 'vprofile-snapshot'
-      RELEASE-REPO = 'vprofile-release'
-      CENTRAL-REPO = 'vprofile-maven-central'
+      NEXUS_USER = 'admin'
+      NEXUS_PASS = 'nexus'
+      NEXUS_GRP-REPO = 'vprofile-maven-group'
+      SNAP_REPO = 'vprofile-snapshot'
+      RELEASE_REPO = 'vprofile-release'
+      CENTRAL_REPO = 'vprofile-maven-central'
       
     }
     stages {
