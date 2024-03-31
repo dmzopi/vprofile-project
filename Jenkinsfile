@@ -23,7 +23,6 @@ pipeline {
       CENTRAL_REPO = 'vprofile-maven-central'
       SONARSERVER = 'sonarserver'
       SONARSCANNER = 'sonarscanner'
-      
     }
     stages {
         stage('Build') {
@@ -77,7 +76,6 @@ pipeline {
                 }
             }
         }
-        
         stage("UploadArtifact"){ //Upload articat to nexus
             steps{
                 nexusArtifactUploader(
@@ -97,8 +95,6 @@ pipeline {
                 )
             }
         }
-
-
     }
         post {
         always {
