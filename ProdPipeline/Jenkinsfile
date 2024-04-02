@@ -11,7 +11,7 @@ pipeline {
     }
     // Specify env variables used in settings.xml and pom.xml
     environment {
-      cluster = 'staging' //create prod cluster and put here
+      cluster = 'staging' //create prod cluster and replace stage here 
       service = 'vpoappstagesvc'  //create prod cluster and put here
 
     }
