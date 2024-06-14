@@ -106,8 +106,8 @@ pipeline {
 			    credentialsId: 'deployUser',
 			    disableHostKeyChecking: true,
                 extraVars   : [
-                   	USER: "admin",
-                    PASS: "${NEXUSPASS}",
+                   	USER: "${NEXUS_USER}",
+                    PASS: "${NEXUS_PASS}",
 			        nexusip: "nexus.pokhrime.vas",
 			        reponame: "vprofile-release",
 			        groupid: "QA",
